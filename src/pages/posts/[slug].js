@@ -17,8 +17,6 @@ import Content from 'components/Content';
 import Metadata from 'components/Metadata';
 import FeaturedImage from 'components/FeaturedImage';
 
-import styles from 'styles/pages/Post.module.scss';
-
 export default function Post({ post, socialImage, relatedPosts }) {
   const {
     title,
@@ -81,26 +79,17 @@ export default function Post({ post, socialImage, relatedPosts }) {
           />
         )}
         <h1
-          className={styles.title}
           dangerouslySetInnerHTML={{
             __html: title,
           }}
         />
-        <Metadata
-          className={styles.postMetadata}
-          date={date}
-          author={author}
-          categories={categories}
-          options={metadataOptions}
-          isSticky={isSticky}
-        />
+        <Metadata date={date} author={author} categories={categories} options={metadataOptions} isSticky={isSticky} />
       </Header>
 
       <Content>
         <Section>
           <Container>
             <div
-              className={styles.content}
               dangerouslySetInnerHTML={{
                 __html: content,
               }}
@@ -109,11 +98,11 @@ export default function Post({ post, socialImage, relatedPosts }) {
         </Section>
       </Content>
 
-      <Section className={styles.postFooter}>
+      <Section>
         <Container>
-          <p className={styles.postModified}>Last updated on {formatDate(modified)}.</p>
+          <p>Last updated on {formatDate(modified)}.</p>
           {!!relatedPostsList.length && (
-            <div className={styles.relatedPosts}>
+            <div>
               {relatedPostsTitle.name ? (
                 <span>
                   More from{' '}

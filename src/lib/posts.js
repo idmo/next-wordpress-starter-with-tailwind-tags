@@ -12,6 +12,9 @@ import {
   QUERY_POST_PER_PAGE,
 } from 'data/posts';
 
+import config from '../../package.json';
+const { site } = config;
+
 /**
  * postPathBySlug
  */
@@ -121,6 +124,7 @@ export async function getAllPosts() {
 
   const data = await apolloClient.query({
     query: QUERY_ALL_POSTS,
+    variables: { site },
   });
 
   const posts = data?.data.posts.edges.map(({ node = {} }) => node);

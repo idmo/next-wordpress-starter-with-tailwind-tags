@@ -3,7 +3,7 @@ module.exports = {
   printWidth: 120,
   overrides: [
     {
-      files: '*.scss',
+      files: '*.css',
       options: {
         singleQuote: false,
       },

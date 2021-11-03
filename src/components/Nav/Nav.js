@@ -9,7 +9,6 @@ import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus'
 
 import Section from 'components/Section';
 
-import styles from './Nav.module.scss';
 import NavListItem from 'components/NavListItem';
 
 const SEARCH_VISIBLE = 'visible';
@@ -177,19 +176,19 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className={styles.nav}>
-      <Section className={styles.navSection}>
-        <p className={styles.navName}>
+    <nav>
+      <Section>
+        <p className="text-3xl">
           <Link href="/">
             <a>{title}</a>
           </Link>
         </p>
-        <ul className={styles.navMenu}>
+        <ul>
           {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} className={styles.navSubMenu} item={listItem} />;
+            return <NavListItem key={listItem.id} item={listItem} />;
           })}
         </ul>
-        <div className={styles.navSearch}>
+        <div>
           {searchVisibility === SEARCH_HIDDEN && (
             <button onClick={handleOnToggleSearch} disabled={!searchIsLoaded}>
               <span className="sr-only">Toggle Search</span>
@@ -207,7 +206,7 @@ const Nav = () => {
                 placeholder="Search..."
                 required
               />
-              <div className={styles.navSearchResults}>
+              <div>
                 {results.length > 0 && (
                   <ul>
                     {results.map(({ slug, title }, index) => {

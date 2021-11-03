@@ -12,8 +12,6 @@ import SectionTitle from 'components/SectionTitle';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
 
-import styles from 'styles/templates/Archive.module.scss';
-
 const DEFAULT_POST_OPTIONS = {};
 
 export default function TemplateArchive({
@@ -46,7 +44,6 @@ export default function TemplateArchive({
           <h1>{Title || title}</h1>
           {metadata.description && (
             <p
-              className={styles.archiveDescription}
               dangerouslySetInnerHTML={{
                 __html: metadata.description,
               }}
@@ -60,7 +57,7 @@ export default function TemplateArchive({
           <SectionTitle>Posts</SectionTitle>
           {Array.isArray(posts) && (
             <>
-              <ul className={styles.posts}>
+              <ul>
                 {posts.map((post) => {
                   return (
                     <li key={post.slug}>

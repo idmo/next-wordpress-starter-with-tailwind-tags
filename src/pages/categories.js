@@ -11,8 +11,6 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import SectionTitle from 'components/SectionTitle';
 
-import styles from 'styles/pages/Categories.module.scss';
-
 export default function Categories({ categories }) {
   const { metadata = {} } = useSite();
   const { title: siteTitle } = metadata;
@@ -40,7 +38,7 @@ export default function Categories({ categories }) {
       <Section>
         <Container>
           <SectionTitle>All Categories</SectionTitle>
-          <ul className={styles.categories}>
+          <ul>
             {categories.map((category) => {
               return (
                 <li key={category.slug}>

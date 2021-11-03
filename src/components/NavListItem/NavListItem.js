@@ -1,8 +1,8 @@
 // import ClassName from 'models/classname';
-// import styles from './NavListItem.module.scss';
+// ;
 import Link from 'next/link';
 
-const NavListItem = ({ className, item }) => {
+const NavListItem = ({ item }) => {
   const nestedItems = (item.children || []).map((item) => {
     return <NavListItem key={item.id} item={item} />;
   });
@@ -20,7 +20,7 @@ const NavListItem = ({ className, item }) => {
         </a>
       )}
 
-      {nestedItems.length > 0 && <ul className={className}>{nestedItems}</ul>}
+      {nestedItems.length > 0 && <ul>{nestedItems}</ul>}
     </li>
   );
 };

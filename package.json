@@ -1,6 +1,7 @@
 {
   "name": "next-wordpress-starter",
-  "homepage": "https://next-wordpress-starter.spacejelly.dev",
+  "homepage": "https://idmo.io",
+  "site": "IDMO",
   "version": "0.1.0",
   "license": "MIT",
   "author": "Colby Fayock <hello@colbyfayock.com>",
@@ -18,10 +19,11 @@
   },
   "lint-staged": {
     "**/*.js": "yarn format:no-path",
-    "**/*.scss": "yarn prettier --write"
+    "**/*.css": "yarn prettier --write"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@tailwindcss/typography": "^0.4.1",
     "canvas": "2.6.1",
     "date-fns": "^2.25.0",
     "dotenv": "^10.0.0",
@@ -45,6 +47,7 @@
     "style.css": "^1.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.0.0",
     "eslint-config-prettier": "^8.3.0",
@@ -53,7 +56,9 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^7.0.4",
     "lint-staged": ">=11.2.5",
-    "prettier": "2.4.1"
+    "postcss": "^8.3.11",
+    "prettier": "2.4.1",
+    "tailwindcss": "^2.2.19"
   },
   "repository": {
     "type": "git",

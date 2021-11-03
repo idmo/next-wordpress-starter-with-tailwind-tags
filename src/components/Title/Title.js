@@ -1,14 +1,6 @@
-import ClassName from 'models/classname';
-
-import styles from './Title.module.scss';
-
-const Title = ({ className, title, thumbnail }) => {
-  const titleClassName = new ClassName(styles.title);
-
-  titleClassName.addIf(className, className);
-
+const Title = ({ title, thumbnail }) => {
   return (
-    <div className={titleClassName.toString()}>
+    <div>
       {thumbnail && <img src={thumbnail.url} alt="" aria-hidden="true" />}
       <span>{title}</span>
     </div>
