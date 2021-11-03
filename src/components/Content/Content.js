@@ -1,4 +1,4 @@
-const Content = ({ children, className }) => {
+const Content = ({ children }) => {
   return <div>{children}</div>;
 };
 

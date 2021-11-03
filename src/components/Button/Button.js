@@ -1,4 +1,4 @@
-const Button = ({ children, className, ...rest }) => {
+const Button = ({ children, ...rest }) => {
   return <button {...rest}>{children}</button>;
 };
 

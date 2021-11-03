@@ -1,10 +1,10 @@
 {
-  "name": "next-wordpress-starter",
+  "name": "next-wordpress-starter-with-tailwind-tags",
   "homepage": "https://idmo.io",
   "site": "IDMO",
   "version": "0.1.0",
   "license": "MIT",
-  "author": "Colby Fayock <hello@colbyfayock.com>",
+  "author": "Brian Maggi",
   "scripts": {
     "build": "next build",
     "wpe-build": "npm run build",
@@ -42,9 +42,7 @@
     "react-dom": "17.0.2",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.3.1",
-    "rss": "^1.2.2",
-    "sass": "^1.43.3",
-    "style.css": "^1.0.0"
+    "rss": "^1.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
