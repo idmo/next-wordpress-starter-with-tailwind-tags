@@ -22,7 +22,7 @@ const { site } = config;
  */
 
 export function postPathBySlug(slug) {
-  return `/posts/${slug}`;
+  return `/blog/${slug}`;
 }
 
 /**
