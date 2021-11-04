@@ -93,6 +93,13 @@ async function getAllPosts(apolloClient, process, verbose = false) {
                 }
               }
             }
+            tags {
+              edges {
+                node {
+                  name
+                }
+              }
+            }
           }
         }
       }
@@ -114,6 +121,10 @@ async function getAllPosts(apolloClient, process, verbose = false) {
 
       if (data.categories) {
         data.categories = data.categories.edges.map(({ node }) => node.name);
+      }
+
+      if (data.tags) {
+        data.tags = data.tags.edges.map(({ node }) => node.name);
       }
 
       if (data.excerpt) {
@@ -264,6 +275,7 @@ function generateFeed({ posts = [], metadata = {} }) {
       description: post.excerpt,
       author: post.author,
       categories: post.categories || [],
+      tags: post.tags || [],
     });
   });
 

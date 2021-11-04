@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import { getPostBySlug, getAllPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
+
 import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
@@ -26,6 +27,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
     date,
     author,
     categories,
+    tags,
     modified,
     featuredImage,
     isSticky = false,
@@ -58,6 +60,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
 
   const metadataOptions = {
     compactCategories: false,
+    compactTags: false,
   };
 
   const { posts: relatedPostsList, title: relatedPostsTitle } = relatedPosts;
@@ -83,7 +86,14 @@ export default function Post({ post, socialImage, relatedPosts }) {
             __html: title,
           }}
         />
-        <Metadata date={date} author={author} categories={categories} options={metadataOptions} isSticky={isSticky} />
+        <Metadata
+          date={date}
+          author={author}
+          categories={categories}
+          tags={tags}
+          options={metadataOptions}
+          isSticky={isSticky}
+        />
       </Header>
 
       <Content>
@@ -137,6 +147,7 @@ export async function getStaticProps({ params = {} } = {}) {
 
   const { categories, databaseId: postId } = post;
   const category = categories.length && categories[0];
+
   let { name, slug } = category;
 
   return {
