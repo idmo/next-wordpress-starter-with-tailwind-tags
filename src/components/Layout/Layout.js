@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div>
+    <div className="w-4/5 mx-auto">
       <Helmet {...helmetSettings} />
 
       <Nav />

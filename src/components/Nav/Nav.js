@@ -1,15 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import Link from 'next/link';
-import { FaSearch } from 'react-icons/fa';
 
-import useSite from 'hooks/use-site';
+// import useSite from 'hooks/use-site';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
-import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
-import Section from 'components/Section';
+// import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
-import NavListItem from 'components/NavListItem';
+// import NavListItem from 'components/NavListItem';
 
 const SEARCH_VISIBLE = 'visible';
 const SEARCH_HIDDEN = 'hidden';
@@ -19,13 +17,14 @@ const Nav = () => {
 
   const [searchVisibility, setSearchVisibility] = useState(SEARCH_HIDDEN);
 
-  const { metadata = {}, menus } = useSite();
-  const { title } = metadata;
+  // const { metadata = {}, menus } = useSite();
+  // const { title } = metadata;
 
-  const navigation = findMenuByLocation(menus, [
-    process.env.WORDPRESS_MENU_LOCATION_NAVIGATION,
-    MENU_LOCATION_NAVIGATION_DEFAULT,
-  ]);
+  // I DON"T WANT TO USE MENUS from WP.
+  // const navigation = findMenuByLocation(menus, [
+  //   process.env.WORDPRESS_MENU_LOCATION_NAVIGATION,
+  //   MENU_LOCATION_NAVIGATION_DEFAULT,
+  // ]);
 
   const { query, results, search, clearSearch, state } = useSearch({
     maxResults: 5,
@@ -176,60 +175,63 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav>
-      <Section>
-        <p className="text-3xl">
+    <nav className="py-6 font-medium">
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-row space-x-5">
           <Link href="/">
-            <a>{title}</a>
+            <a>Home</a>
           </Link>
-        </p>
-        <ul>
-          {navigation?.map((listItem) => {
-            return <NavListItem key={listItem.id} item={listItem} />;
-          })}
-        </ul>
-        <div>
-          {searchVisibility === SEARCH_HIDDEN && (
-            <button onClick={handleOnToggleSearch} disabled={!searchIsLoaded}>
-              <span className="sr-only">Toggle Search</span>
-              <FaSearch />
-            </button>
-          )}
-          {searchVisibility === SEARCH_VISIBLE && (
-            <form ref={formRef} action="/search" data-search-is-active={!!query}>
-              <input
-                type="search"
-                name="q"
-                value={query || ''}
-                onChange={handleOnSearch}
-                autoComplete="off"
-                placeholder="Search..."
-                required
-              />
-              <div>
-                {results.length > 0 && (
-                  <ul>
-                    {results.map(({ slug, title }, index) => {
-                      return (
-                        <li key={slug}>
-                          <Link tabIndex={index} href={postPathBySlug(slug)}>
-                            <a>{title}</a>
-                          </Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-                {results.length === 0 && (
-                  <p>
-                    Sorry, not finding anything for <strong>{query}</strong>
-                  </p>
-                )}
-              </div>
-            </form>
-          )}
+          <Link href="/blog">
+            <a>Blog</a>
+          </Link>
+          <Link href="/newsletter">
+            <a>Newsletter</a>
+          </Link>
         </div>
-      </Section>
+        <div>
+          <div>
+            {searchVisibility === SEARCH_HIDDEN && (
+              <button onClick={handleOnToggleSearch} disabled={!searchIsLoaded}>
+                <span className="sr-only">Toggle Search</span>
+                Search
+              </button>
+            )}
+            {searchVisibility === SEARCH_VISIBLE && (
+              <form ref={formRef} action="/search" data-search-is-active={!!query}>
+                <input
+                  type="search"
+                  name="q"
+                  value={query || ''}
+                  onChange={handleOnSearch}
+                  autoComplete="off"
+                  placeholder="Search..."
+                  required
+                />
+                <div>
+                  {results.length > 0 && (
+                    <ul>
+                      {results.map(({ slug, title }, index) => {
+                        return (
+                          <li key={slug}>
+                            <Link tabIndex={index} href={postPathBySlug(slug)}>
+                              <a>{title}</a>
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                  {results.length === 0 && (
+                    <p>
+                      Sorry, not finding anything for <strong>{query}</strong>
+                    </p>
+                  )}
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
     </nav>
   );
 };

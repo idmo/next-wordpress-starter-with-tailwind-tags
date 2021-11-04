@@ -20,7 +20,7 @@ const Footer = () => {
       {hasMenu && (
         <Section>
           <Container>
-            <ul>
+            <ul className="grid grid-cols-3 gap-10">
               {hasRecentPosts && (
                 <li>
                   <Link href="/posts/">

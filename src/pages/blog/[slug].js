@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import { getPostBySlug, getAllPosts, getRelatedPosts, postPathBySlug } from 'lib/posts';
 import { categoryPathBySlug } from 'lib/categories';
 
-import { formatDate } from 'lib/datetime';
 import { ArticleJsonLd } from 'lib/json-ld';
 import { helmetSettingsFromMetadata } from 'lib/site';
 import useSite from 'hooks/use-site';
@@ -28,7 +27,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
     author,
     categories,
     tags,
-    modified,
+
     featuredImage,
     isSticky = false,
   } = post;
@@ -82,6 +81,7 @@ export default function Post({ post, socialImage, relatedPosts }) {
           />
         )}
         <h1
+          className="pt-8 pb-4 text-5xl font-bold text-gray-800"
           dangerouslySetInnerHTML={{
             __html: title,
           }}
@@ -98,19 +98,21 @@ export default function Post({ post, socialImage, relatedPosts }) {
 
       <Content>
         <Section>
-          <Container>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
-          </Container>
+          <div className="py-8">
+            <Container>
+              <div
+                className="prose"
+                dangerouslySetInnerHTML={{
+                  __html: content,
+                }}
+              />
+            </Container>
+          </div>
         </Section>
       </Content>
 
       <Section>
         <Container>
-          <p>Last updated on {formatDate(modified)}.</p>
           {!!relatedPostsList.length && (
             <div>
               {relatedPostsTitle.name ? (

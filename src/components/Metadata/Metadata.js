@@ -15,35 +15,35 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
   const { compactCategories, compactTags } = options;
 
   return (
-    <ul>
+    <div className="flex flex-row space-x-3">
       {author && (
-        <li>
-          <address>
-            {author.avatar && (
+        <div>
+          {/* {author.avatar && (
               <img
+                className="rounded-full w-[24px] h-[24px]"
                 width={author.avatar.width}
                 height={author.avatar.height}
                 src={author.avatar.url}
                 alt="Author Avatar"
               />
-            )}
-            By{' '}
-            <Link href={authorPathByName(author.name)}>
-              <a rel="author">{author.name}</a>
-            </Link>
-          </address>
-        </li>
+            )} */}
+          <Link href={authorPathByName(author.name)}>
+            <a className="font-medium" rel="author">
+              {author.name}
+            </a>
+          </Link>
+        </div>
       )}
       {date && (
-        <li>
+        <div>
           <time pubdate="pubdate" dateTime={date}>
             {formatDate(date)}
           </time>
-        </li>
+        </div>
       )}
 
       {Array.isArray(categories) && categories[0] && (
-        <li>
+        <div>
           {compactCategories && (
             <p title={categories.map(({ name }) => name).join(', ')}>
               <Link href={categoryPathBySlug(categories[0].slug)}>
@@ -53,52 +53,58 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
             </p>
           )}
           {!compactCategories && (
-            <ul>
+            <div>
               {categories.map((category) => {
                 return (
-                  <li key={category.slug}>
+                  <span key={category.slug}>
                     <Link href={categoryPathBySlug(category.slug)}>
                       <a>{category.name}</a>
                     </Link>
-                  </li>
+                  </span>
                 );
               })}
-            </ul>
+            </div>
           )}
-        </li>
+        </div>
       )}
-      <div>Tags</div>
       {Array.isArray(tags) && tags[0] && (
-        <li>
+        <div>
           {compactTags && (
-            <p title={tags.map(({ name }) => name).join(', ')}>
+            <span
+              className="inline-flex px-2 p-0.5 bg-green-400 rounded"
+              title={tags.map(({ name }) => name).join(', ')}
+            >
               <Link href={tagPathBySlug(tags[0].slug)}>
                 <a>{tags[0].name}</a>
               </Link>
               {tags.length > 1 && ' and more'}
-            </p>
+            </span>
           )}
           {!compactTags && (
-            <ul>
+            <div>
               {tags.map((tag) => {
                 return (
-                  <li key={tag.slug}>
+                  <div
+                    className="inline-flex items-center space-x-1 text-xs uppercase border-green-900 px-1 py-0.5 hover:bg-green-200"
+                    key={tag.slug}
+                  >
+                    <span className="inline-flex w-2 h-2 bg-green-500 rounded-full"></span>
                     <Link href={tagPathBySlug(tag.slug)}>
                       <a>{tag.name}</a>
                     </Link>
-                  </li>
+                  </div>
                 );
               })}
-            </ul>
+            </div>
           )}
-        </li>
+        </div>
       )}
       {isSticky && (
         <li>
           <FaMapPin aria-label="Sticky Post" />
         </li>
       )}
-    </ul>
+    </div>
   );
 };
 
