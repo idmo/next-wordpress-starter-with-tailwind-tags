@@ -6,7 +6,6 @@ import Metadata from 'components/Metadata';
 
 import { FaMapPin } from 'react-icons/fa';
 const PostCard = ({ post, options = {} }) => {
-  console.log(post);
   const { title, excerpt, slug, date, author, categories, tags, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 

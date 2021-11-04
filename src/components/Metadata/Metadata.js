@@ -72,7 +72,7 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
         <li>
           {compactTags && (
             <p title={tags.map(({ name }) => name).join(', ')}>
-              <Link href={tagPathBySlug(categories[0].slug)}>
+              <Link href={tagPathBySlug(tags[0].slug)}>
                 <a>{tags[0].name}</a>
               </Link>
               {tags.length > 1 && ' and more'}

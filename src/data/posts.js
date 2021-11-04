@@ -183,7 +183,7 @@ export const QUERY_POSTS_BY_CATEGORY_ID = gql`
 `;
 
 export const QUERY_POSTS_BY_TAG_ID = gql`
-  query PostsByTagId($tagId: String!) {
+  query PostsByTagId($tagId: String) {
     posts(where: { tagId: $tagId, hasPassword: false }) {
       edges {
         node {

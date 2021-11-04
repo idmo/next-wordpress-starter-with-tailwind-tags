@@ -357,7 +357,7 @@ export async function getRelatedPosts(category, tag, postId, count = 5) {
   }
 
   if (tag) {
-    const { posts } = await getPostsByTagId(tag.databaseId);
+    const { posts } = await getPostsByTagId(tag.id);
     const filtered = posts.filter(({ postId: id }) => id !== postId);
     const sorted = sortObjectsByDate(filtered);
     relatedPosts = sorted.map((post) => ({ title: post.title, slug: post.slug }));

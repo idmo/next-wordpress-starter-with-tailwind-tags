@@ -7,7 +7,7 @@ import { QUERY_ALL_TAGS, QUERY_TAG_BY_SLUG, QUERY_TAG_SEO_BY_SLUG } from 'data/t
  */
 
 export function tagPathBySlug(slug) {
-  return `/tags/${slug}`;
+  return `/blog/tags/${slug}`;
 }
 
 /**
