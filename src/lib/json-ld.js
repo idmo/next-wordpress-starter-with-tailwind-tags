@@ -8,7 +8,7 @@ import config from '../../package.json';
 
 export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
   const { homepage = '', faviconPath = '/favicon.ico' } = config;
-  const { title, slug, excerpt, date, author, categories, modified, featuredImage } = post;
+  const { title, slug, excerpt, date, author, categories, tags, modified, featuredImage } = post;
   const path = postPathBySlug(slug);
   const datePublished = !!date && new Date(date);
   const dateModified = !!modified && new Date(modified);
@@ -31,6 +31,7 @@ export function ArticleJsonLd({ post = {}, siteTitle = '' }) {
     dateModified: dateModified ? dateModified.toISOString() : datePublished.toISOString(),
     description: excerpt,
     keywords: [categories.map(({ name }) => `${name}`).join(', ')],
+    meta: [tags.map(({ name }) => `${name}`).join(', ')],
     copyrightYear: datePublished ? datePublished.getFullYear() : '',
     author: {
       '@type': 'Person',

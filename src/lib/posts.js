@@ -8,6 +8,8 @@ import {
   QUERY_POST_BY_SLUG,
   QUERY_POSTS_BY_AUTHOR_SLUG,
   QUERY_POSTS_BY_CATEGORY_ID,
+  QUERY_POSTS_BY_TAG_ID,
+  QUERY_POSTS_BY_TAG_SLUG,
   QUERY_POST_SEO_BY_SLUG,
   QUERY_POST_PER_PAGE,
 } from 'data/posts';
@@ -163,6 +165,34 @@ export async function getPostsByAuthorSlug(slug) {
 }
 
 /**
+ * getPostsByTagSlug
+ */
+
+export async function getPostsByTagSlug(slug) {
+  const apolloClient = getApolloClient();
+
+  let postData;
+
+  try {
+    postData = await apolloClient.query({
+      query: QUERY_POSTS_BY_TAG_SLUG,
+      variables: {
+        slug,
+      },
+    });
+  } catch (e) {
+    console.log(`Failed to query post data: ${e.message}`);
+    throw e;
+  }
+
+  const posts = postData?.data.posts.edges.map(({ node = {} }) => node);
+
+  return {
+    posts: Array.isArray(posts) && posts.map(mapPostData),
+  };
+}
+
+/**
  * getPostsByCategoryId
  */
 
@@ -176,6 +206,34 @@ export async function getPostsByCategoryId(categoryId) {
       query: QUERY_POSTS_BY_CATEGORY_ID,
       variables: {
         categoryId,
+      },
+    });
+  } catch (e) {
+    console.log(`Failed to query post data: ${e.message}`);
+    throw e;
+  }
+
+  const posts = postData?.data.posts.edges.map(({ node = {} }) => node);
+
+  return {
+    posts: Array.isArray(posts) && posts.map(mapPostData),
+  };
+}
+
+/**
+ * getPostsByTagId
+ */
+
+export async function getPostsByTagId(tagId) {
+  const apolloClient = getApolloClient();
+
+  let postData;
+
+  try {
+    postData = await apolloClient.query({
+      query: QUERY_POSTS_BY_TAG_ID,
+      variables: {
+        tagId,
       },
     });
   } catch (e) {
@@ -265,6 +323,16 @@ export function mapPostData(post = {}) {
     });
   }
 
+  // Clean up the tags to make them easier to access.
+
+  if (data.tags) {
+    data.tags = data.tags.edges.map(({ node }) => {
+      return {
+        ...node,
+      };
+    });
+  }
+
   // Clean up the featured image to make them more easy to access
 
   if (data.featuredImage) {
@@ -278,11 +346,18 @@ export function mapPostData(post = {}) {
  * getRelatedPosts
  */
 
-export async function getRelatedPosts(category, postId, count = 5) {
+export async function getRelatedPosts(category, tag, postId, count = 5) {
   let relatedPosts = [];
 
   if (category) {
     const { posts } = await getPostsByCategoryId(category.databaseId);
+    const filtered = posts.filter(({ postId: id }) => id !== postId);
+    const sorted = sortObjectsByDate(filtered);
+    relatedPosts = sorted.map((post) => ({ title: post.title, slug: post.slug }));
+  }
+
+  if (tag) {
+    const { posts } = await getPostsByTagId(tag.databaseId);
     const filtered = posts.filter(({ postId: id }) => id !== postId);
     const sorted = sortObjectsByDate(filtered);
     relatedPosts = sorted.map((post) => ({ title: post.title, slug: post.slug }));

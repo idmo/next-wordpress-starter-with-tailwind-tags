@@ -7,16 +7,18 @@ import { getSiteMetadata } from 'lib/site';
 import { getRecentPosts } from 'lib/posts';
 import { getTopLevelPages } from 'lib/pages';
 import { getCategories } from 'lib/categories';
+import { getTags } from 'lib/tags';
 import NextNProgress from 'nextjs-progressbar';
 import { getAllMenus, createMenuFromPages, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
 import '../styles/globals.css';
 
-function App({ Component, pageProps = {}, metadata, recentPosts, categories, menus }) {
+function App({ Component, pageProps = {}, metadata, recentPosts, categories, tags, menus }) {
   const site = useSiteContext({
     metadata,
     recentPosts,
     categories,
+    tags,
     menus,
   });
 
@@ -41,6 +43,10 @@ App.getInitialProps = async function (appContext) {
     count: 5,
   });
 
+  const { tags } = await getTags({
+    count: 5,
+  });
+
   const { menus } = await getAllMenus();
 
   const defaultNavigation = createMenuFromPages({
@@ -55,6 +61,7 @@ App.getInitialProps = async function (appContext) {
     metadata: await getSiteMetadata(),
     recentPosts,
     categories,
+    tags,
     menus,
   };
 };
