@@ -1,5 +1,3 @@
-import ClassName from 'models/classname';
-
 const Image = ({ children, width = '100%', height = 'auto', src, alt, srcSet, sizes, dangerouslySetInnerHTML }) => {
   return (
     <figure>

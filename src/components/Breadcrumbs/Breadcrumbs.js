@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-const Breadcrumbs = ({ className, breadcrumbs }) => {
+const Breadcrumbs = ({ breadcrumbs }) => {
   return (
     <ul>
       {breadcrumbs.map(({ id, title, uri }) => {
