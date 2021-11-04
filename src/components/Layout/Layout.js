@@ -59,15 +59,18 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="w-4/5 mx-auto">
+    <>
       <Helmet {...helmetSettings} />
 
       <Nav />
 
-      <Main>{children}</Main>
-
-      <Footer />
-    </div>
+      <Main>
+        <div>{children}</div>
+      </Main>
+      <div className="py-5 mt-8 border-t border-black border-opacity-50">
+        <Footer />
+      </div>
+    </>
   );
 };
 

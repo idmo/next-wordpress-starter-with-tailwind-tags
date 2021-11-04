@@ -7,6 +7,7 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
+import Logo from 'components/Logo/Logo';
 
 export default function Home({ posts }) {
   const { metadata = {} } = useSite();
@@ -19,7 +20,9 @@ export default function Home({ posts }) {
         <div>
           <Link href="/">
             <a>
-              <h1>{title}</h1>
+              <h1>
+                <Logo>{title}</Logo>
+              </h1>
             </a>
           </Link>
           <p>{description}</p>
