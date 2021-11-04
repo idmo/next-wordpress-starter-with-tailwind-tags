@@ -2,7 +2,7 @@
   "name": "next-wordpress-starter-with-tailwind-tags",
   "homepage": "https://idmo.io",
   "site": "IDMO",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "author": "Brian Maggi",
   "scripts": {
@@ -60,9 +60,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/colbyfayock/next-wordpress-starter"
+    "url": "https://github.com/idmo/next-wordpress-starter-with-tailwind-tags"
   },
   "bugs": {
-    "url": "https://github.com/colbyfayock/next-wordpress-starter/issues"
+    "url": "https://github.com/idmo/next-wordpress-starter-with-tailwind-tags/issues"
   }
 }
