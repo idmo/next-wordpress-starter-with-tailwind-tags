@@ -42,3 +42,4 @@ public/images/og
 # VSCode settings
 .vscode/
 yarn.lock
+wpFilters.php
