@@ -73,41 +73,43 @@ export default function Post({ post, socialImage, relatedPosts }) {
       <ArticleJsonLd post={post} siteTitle={siteMetadata.title} />
 
       <Header>
-        {featuredImage && (
-          <FeaturedImage
-            {...featuredImage}
-            src={featuredImage.sourceUrl}
-            dangerouslySetInnerHTML={featuredImage.caption}
+        <div>
+          {featuredImage && (
+            <FeaturedImage
+              {...featuredImage}
+              src={featuredImage.sourceUrl}
+              dangerouslySetInnerHTML={featuredImage.caption}
+            />
+          )}
+        </div>
+        <Container>
+          <h1
+            className="pt-8 font-medium md:text-5xl text-paper-700 dark:text-paper-200"
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
           />
-        )}
-        <h1
-          className="pt-8 pb-4 text-5xl font-bold text-gray-800"
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-        <Metadata
-          date={date}
-          author={author}
-          categories={categories}
-          tags={tags}
-          options={metadataOptions}
-          isSticky={isSticky}
-        />
+          <Metadata
+            date={date}
+            author={author}
+            categories={categories}
+            tags={tags}
+            options={metadataOptions}
+            isSticky={isSticky}
+          />
+        </Container>
       </Header>
 
       <Content>
         <Section>
-          <div className="py-8">
-            <Container>
-              <div
-                className="prose"
-                dangerouslySetInnerHTML={{
-                  __html: content,
-                }}
-              />
-            </Container>
-          </div>
+          <Container>
+            <div
+              className="prose md:prose-lg"
+              dangerouslySetInnerHTML={{
+                __html: content,
+              }}
+            />
+          </Container>
         </Section>
       </Content>
 

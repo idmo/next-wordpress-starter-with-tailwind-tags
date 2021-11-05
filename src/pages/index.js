@@ -17,7 +17,7 @@ export default function Home({ posts }) {
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
       <Header>
-        <div>
+        <Container>
           <Link href="/">
             <a>
               <h1>
@@ -26,24 +26,30 @@ export default function Home({ posts }) {
             </a>
           </Link>
           <p>{description}</p>
-        </div>
+        </Container>
       </Header>
       <div>
         <Section>
           <Container>
-            <h2>from the blog...</h2>
-
-            {posts.map((post, i) => {
-              return (
-                <div key={post.slug}>
-                  <div>{post.categories && post.categories[0].name}</div>
-                  <div>{post.title}</div>
-                  <Link href={`/blog/${post.slug}`} key={i}>
-                    <a>Read More &rarr;</a>
-                  </Link>
-                </div>
-              );
-            })}
+            <div className="py-6">
+              <h4>from the blog...</h4>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+                {posts.map(({ title, categories, id, slug }) => {
+                  return (
+                    <div key={id} className="relative p-2 border-2 rounded-md border-paper-200 bg-paper-50">
+                      <div className="text-sm font-semibold tracking-wide uppercase text-secondary-500">
+                        {categories && categories[0].name}
+                      </div>
+                      <Link href={`/blog/${slug}`}>
+                        <a className="inline-block pt-2 pb-4 text-xl font-medium md:leading-6 md:text-2xl text-paper-700">
+                          {title}
+                        </a>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
 
             <Link href="/blog">
               <a>Read More from the Blog &rarr;</a>

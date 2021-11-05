@@ -5,7 +5,7 @@ import Link from 'next/link';
 import useSearch, { SEARCH_STATE_LOADED } from 'hooks/use-search';
 import { postPathBySlug } from 'lib/posts';
 import Container from 'components/Container';
-
+import GlobalMenu from 'components/GlobalMenu';
 // import { findMenuByLocation, MENU_LOCATION_NAVIGATION_DEFAULT } from 'lib/menus';
 
 // import NavListItem from 'components/NavListItem';
@@ -180,15 +180,7 @@ const Nav = () => {
       <nav className="py-6 font-medium">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row space-x-5">
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-            <Link href="/blog">
-              <a>Blog</a>
-            </Link>
-            <Link href="/newsletter">
-              <a>Newsletter</a>
-            </Link>
+            <GlobalMenu />
           </div>
           <div>
             <div>

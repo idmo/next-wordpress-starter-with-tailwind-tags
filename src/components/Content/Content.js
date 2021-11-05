@@ -1,5 +1,5 @@
 const Content = ({ children }) => {
-  return <div className="prose">{children}</div>;
+  return <div>{children}</div>;
 };
 
 export default Content;

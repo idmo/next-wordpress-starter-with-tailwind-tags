@@ -60,15 +60,17 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Helmet {...helmetSettings} />
+      <div className="flex flex-col justify-between h-screen">
+        <Helmet {...helmetSettings} />
 
-      <Nav />
+        <Nav />
 
-      <Main>
-        <div>{children}</div>
-      </Main>
-      <div className="py-5 mt-8 border-t border-black border-opacity-50">
-        <Footer />
+        <Main>
+          <div>{children}</div>
+        </Main>
+        <div className="py-5 mt-8 text-paper-700 b order-t bottom bg-secondary-100 border-paper-800 dark:border-paper-100 dark:bg-secondary-500 dark:text-paper-300">
+          <Footer />
+        </div>
       </div>
     </>
   );

@@ -46,7 +46,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body {...this.helmetBodyAttrComponents} className="bg-white dark:bg-gray-600">
+        <body
+          {...this.helmetBodyAttrComponents}
+          className="bg-paper-50 text-paper-800 dark:bg-paper-800 dark:text-paper-200"
+        >
           <Main />
           <NextScript />
         </body>
