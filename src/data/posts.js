@@ -121,8 +121,8 @@ export const QUERY_POST_BY_SLUG = gql`
 `;
 
 export const QUERY_POSTS_BY_CATEGORY_ID = gql`
-  query PostsByCategoryId($categoryId: Int!) {
-    posts(where: { categoryId: $categoryId, hasPassword: false }) {
+  query PostsByCategoryId($categoryId: Int!, $site: String!) {
+    posts(where: { categoryId: $categoryId, site: $site, hasPassword: false }) {
       edges {
         node {
           author {
@@ -183,8 +183,8 @@ export const QUERY_POSTS_BY_CATEGORY_ID = gql`
 `;
 
 export const QUERY_POSTS_BY_TAG_ID = gql`
-  query PostsByTagId($tagId: String) {
-    posts(where: { tagId: $tagId, hasPassword: false }) {
+  query PostsByTagId($tagId: String, $site: String) {
+    posts(where: { tagId: $tagId, site: $site, hasPassword: false }) {
       edges {
         node {
           author {
@@ -245,8 +245,8 @@ export const QUERY_POSTS_BY_TAG_ID = gql`
 `;
 
 export const QUERY_POSTS_BY_AUTHOR_SLUG = gql`
-  query PostByAuthorSlug($slug: String!) {
-    posts(where: { authorName: $slug, hasPassword: false }) {
+  query PostByAuthorSlug($slug: String!, $site: String) {
+    posts(where: { authorName: $slug, site: $site, hasPassword: false }) {
       edges {
         node {
           categories {

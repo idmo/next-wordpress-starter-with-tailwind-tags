@@ -10,6 +10,7 @@ Scaling WordPress with the power of [Next.js](https://nextjs.org/) and the stati
 ## ⚡️ Quick Start
 
 ### Requirements
+
 * [WordPress](https://wordpress.org/)
 * [WPGraphQL](https://www.wpgraphql.com/)
 * Environment variables (see below)
@@ -21,7 +22,8 @@ npx create-next-app -e https://github.com/colbyfayock/next-wordpress-starter
 ```
 
 Add an `.env.local` file to the root with the following:
-```
+
+```bash
 WORDPRESS_GRAPHQL_ENDPOINT="http://wordpressite.com/graphql"
 ```
 

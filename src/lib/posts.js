@@ -9,7 +9,7 @@ import {
   QUERY_POSTS_BY_AUTHOR_SLUG,
   QUERY_POSTS_BY_CATEGORY_ID,
   QUERY_POSTS_BY_TAG_ID,
-  QUERY_POSTS_BY_TAG_SLUG,
+  // QUERY_POSTS_BY_TAG_SLUG,
   QUERY_POST_SEO_BY_SLUG,
   QUERY_POST_PER_PAGE,
 } from 'data/posts';
@@ -41,6 +41,7 @@ export async function getPostBySlug(slug) {
       query: QUERY_POST_BY_SLUG,
       variables: {
         slug,
+        site,
       },
     });
   } catch (e) {
@@ -59,6 +60,7 @@ export async function getPostBySlug(slug) {
         query: QUERY_POST_SEO_BY_SLUG,
         variables: {
           slug,
+          site,
         },
       });
     } catch (e) {
@@ -150,6 +152,7 @@ export async function getPostsByAuthorSlug(slug) {
       query: QUERY_POSTS_BY_AUTHOR_SLUG,
       variables: {
         slug,
+        site,
       },
     });
   } catch (e) {
@@ -167,30 +170,32 @@ export async function getPostsByAuthorSlug(slug) {
 /**
  * getPostsByTagSlug
  */
+// Commented out because I'm not using
+// and it's causing an error.
 
-export async function getPostsByTagSlug(slug) {
-  const apolloClient = getApolloClient();
+// export async function getPostsByTagSlug(slug) {
+//   const apolloClient = getApolloClient();
 
-  let postData;
+//   let postData;
 
-  try {
-    postData = await apolloClient.query({
-      query: QUERY_POSTS_BY_TAG_SLUG,
-      variables: {
-        slug,
-      },
-    });
-  } catch (e) {
-    console.log(`Failed to query post data: ${e.message}`);
-    throw e;
-  }
+//   try {
+//     postData = await apolloClient.query({
+//       query: QUERY_POSTS_BY_TAG_SLUG,
+//       variables: {
+//         slug,
+//       },
+//     });
+//   } catch (e) {
+//     console.log(`Failed to query post data: ${e.message}`);
+//     throw e;
+//   }
 
-  const posts = postData?.data.posts.edges.map(({ node = {} }) => node);
+//   const posts = postData?.data.posts.edges.map(({ node = {} }) => node);
 
-  return {
-    posts: Array.isArray(posts) && posts.map(mapPostData),
-  };
-}
+//   return {
+//     posts: Array.isArray(posts) && posts.map(mapPostData),
+//   };
+// }
 
 /**
  * getPostsByCategoryId
@@ -206,6 +211,7 @@ export async function getPostsByCategoryId(categoryId) {
       query: QUERY_POSTS_BY_CATEGORY_ID,
       variables: {
         categoryId,
+        site,
       },
     });
   } catch (e) {
@@ -234,6 +240,7 @@ export async function getPostsByTagId(tagId) {
       query: QUERY_POSTS_BY_TAG_ID,
       variables: {
         tagId,
+        site,
       },
     });
   } catch (e) {

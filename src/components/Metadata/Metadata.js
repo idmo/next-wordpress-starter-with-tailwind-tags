@@ -13,6 +13,8 @@ const DEFAULT_METADATA_OPTIONS = {
 const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_OPTIONS }) => {
   const { compactCategories } = options;
 
+  console.log(author);
+
   return (
     <>
       <div className="text-sm md:text-base">
@@ -22,11 +24,13 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
           </time>
         )}
         <span className="text-primary-600">{' / '}</span>
-        <Link href={authorPathByName(author.name)}>
-          <a className="font-medium" rel="author">
-            {author.name}
-          </a>
-        </Link>
+        {author && (
+          <Link href={authorPathByName(author.name)}>
+            <a className="font-medium" rel="author">
+              {author.name}
+            </a>
+          </Link>
+        )}
       </div>
       <div className="inline-flex flex-row px-2 py-1 my-2 space-x-2 text-sm rounded-lg shadow bg-paper-100 md:text-base dark:bg-paper-700 dark:text-paper-200">
         {Array.isArray(categories) && categories[0] && (

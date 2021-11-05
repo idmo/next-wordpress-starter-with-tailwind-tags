@@ -2,6 +2,9 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_TAGS, QUERY_TAG_BY_SLUG, QUERY_TAG_SEO_BY_SLUG } from 'data/tags';
 
+import config from '../../package.json';
+const { site } = config;
+
 /**
  * tagPathBySlug
  */
@@ -44,6 +47,7 @@ export async function getTagBySlug(slug) {
       query: QUERY_TAG_BY_SLUG,
       variables: {
         slug,
+        site,
       },
     });
   } catch (e) {
@@ -62,6 +66,7 @@ export async function getTagBySlug(slug) {
         query: QUERY_TAG_SEO_BY_SLUG,
         variables: {
           slug,
+          site,
         },
       });
     } catch (e) {

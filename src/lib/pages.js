@@ -2,6 +2,9 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_PAGES, QUERY_PAGE_BY_URI, QUERY_PAGE_SEO_BY_URI } from 'data/pages';
 
+import config from '../../package.json';
+const { site } = config;
+
 /**
  * pagePathBySlug
  */
@@ -26,6 +29,7 @@ export async function getPageByUri(uri) {
       query: QUERY_PAGE_BY_URI,
       variables: {
         uri,
+        site,
       },
     });
   } catch (e) {
