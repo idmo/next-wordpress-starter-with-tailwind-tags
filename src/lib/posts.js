@@ -230,7 +230,7 @@ export async function getPostsByCategoryId(categoryId) {
  * getPostsByTagId
  */
 
-export async function getPostsByTagId(tagId) {
+export async function getPostsByTagId(tagName) {
   const apolloClient = getApolloClient();
 
   let postData;
@@ -239,7 +239,7 @@ export async function getPostsByTagId(tagId) {
     postData = await apolloClient.query({
       query: QUERY_POSTS_BY_TAG_ID,
       variables: {
-        tagId,
+        tagName,
         site,
       },
     });

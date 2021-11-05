@@ -7,7 +7,7 @@ import Title from 'components/Title';
 
 export default function Category({ category, posts }) {
   const { name, description, slug } = category;
-
+  console.log('cat ', category, 'posts ', posts);
   const { metadata } = usePageMetadata({
     metadata: {
       ...category,

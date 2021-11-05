@@ -6,6 +6,7 @@ import TemplateArchive from 'templates/archive';
 import Title from 'components/Title';
 
 export default function Tag({ tag, posts }) {
+  console.log('tag ', tag, 'posts: ', posts);
   const { name, description, slug } = tag;
 
   const { metadata } = usePageMetadata({
@@ -20,7 +21,7 @@ export default function Tag({ tag, posts }) {
 
 export async function getStaticProps({ params = {} } = {}) {
   const { tag } = await getTagBySlug(params?.slug);
-  const { posts } = await getPostsByTagId(tag.id);
+  const { posts } = await getPostsByTagId(tag.name);
 
   return {
     props: {

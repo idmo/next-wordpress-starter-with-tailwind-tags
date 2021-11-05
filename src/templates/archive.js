@@ -31,7 +31,6 @@ export default function TemplateArchive({
   }
 
   const helmetSettings = helmetSettingsFromMetadata(metadata);
-  console.log(metadata);
 
   return (
     <Layout>

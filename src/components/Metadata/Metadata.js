@@ -13,8 +13,6 @@ const DEFAULT_METADATA_OPTIONS = {
 const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_OPTIONS }) => {
   const { compactCategories } = options;
 
-  console.log(author);
-
   return (
     <>
       <div className="text-sm md:text-base">
