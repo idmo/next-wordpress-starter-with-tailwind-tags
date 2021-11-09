@@ -183,8 +183,8 @@ export const QUERY_POSTS_BY_CATEGORY_ID = gql`
 `;
 
 export const QUERY_POSTS_BY_TAG_ID = gql`
-  query PostsByTagId($tagName: String, $site: String) {
-    posts(where: { tag: $tagName, site: $site, hasPassword: false }) {
+  query PostsByTagId($tagName: String) {
+    posts(where: { tag: $tagName, hasPassword: false }) {
       edges {
         node {
           author {
@@ -245,8 +245,8 @@ export const QUERY_POSTS_BY_TAG_ID = gql`
 `;
 
 export const QUERY_POSTS_BY_AUTHOR_SLUG = gql`
-  query PostByAuthorSlug($slug: String!, $site: String) {
-    posts(where: { authorName: $slug, site: $site, hasPassword: false }) {
+  query PostByAuthorSlug($slug: String!) {
+    posts(where: { authorName: $slug, hasPassword: false }) {
       edges {
         node {
           categories {

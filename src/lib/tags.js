@@ -2,9 +2,10 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_TAGS, QUERY_TAG_BY_SLUG, QUERY_TAG_SEO_BY_SLUG } from 'data/tags';
 
+// use the parent category tag
 import config from '../../package.json';
-const { site } = config;
-
+const { parentCategoryId } = config;
+const site = parentCategoryId;
 /**
  * tagPathBySlug
  */
