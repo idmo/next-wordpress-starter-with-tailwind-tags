@@ -22,6 +22,9 @@ export async function getAllCategories() {
 
   const data = await apolloClient.query({
     query: QUERY_ALL_CATEGORIES,
+    variables: {
+      site,
+    },
   });
 
   const categories = data?.data.categories.edges.map(({ node = {} }) => node);

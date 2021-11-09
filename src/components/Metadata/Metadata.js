@@ -22,6 +22,8 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
           </time>
         )}
         <span className="text-primary-600">{' / '}</span>
+
+        {/* FIXME this isn't a good solution. There is always an author. */}
         {author && (
           <Link href={authorPathByName(author.name)}>
             <a className="font-medium" rel="author">

@@ -14,8 +14,8 @@ import {
   QUERY_POST_PER_PAGE,
 } from 'data/posts';
 
-import config from '../../package.json';
-const { site } = config;
+// use the parent category tag
+const site = 35;
 
 /**
  * postPathBySlug
@@ -41,7 +41,6 @@ export async function getPostBySlug(slug) {
       query: QUERY_POST_BY_SLUG,
       variables: {
         slug,
-        site,
       },
     });
   } catch (e) {

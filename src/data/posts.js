@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_ALL_POSTS = gql`
-  query AllPosts($site: String!) {
-    posts(where: { site: $site, hasPassword: false }, first: 10) {
+  query AllPosts($site: Int) {
+    posts(where: { categoryId: $site, hasPassword: false }, first: 10000) {
       edges {
         node {
           author {
