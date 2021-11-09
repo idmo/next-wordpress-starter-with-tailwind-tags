@@ -2,6 +2,8 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_PAGES, QUERY_PAGE_BY_URI, QUERY_PAGE_SEO_BY_URI } from 'data/pages';
 
+import config from '../../package.json';
+
 /**
  * pagePathBySlug
  */
@@ -9,6 +11,11 @@ import { QUERY_ALL_PAGES, QUERY_PAGE_BY_URI, QUERY_PAGE_SEO_BY_URI } from 'data/
 export function pagePathBySlug(slug) {
   return `/${slug}`;
 }
+
+// use the parent category tag
+
+const { parentCategoryId } = config;
+const site = parentCategoryId;
 
 /**
  * getPageByUri
@@ -26,6 +33,7 @@ export async function getPageByUri(uri) {
       query: QUERY_PAGE_BY_URI,
       variables: {
         uri,
+        site,
       },
     });
   } catch (e) {

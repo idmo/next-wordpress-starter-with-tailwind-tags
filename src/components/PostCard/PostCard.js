@@ -6,7 +6,6 @@ import Metadata from 'components/Metadata';
 
 import { FaMapPin } from 'react-icons/fa';
 const PostCard = ({ post, options = {} }) => {
-  console.log(post);
   const { title, excerpt, slug, date, author, categories, tags, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 
@@ -34,6 +33,7 @@ const PostCard = ({ post, options = {} }) => {
       <Link href={postPathBySlug(slug)}>
         <a>
           <h3
+            className="pt-4 pb-1 text-2xl font-bold text-paper-700 dark:text-paper-400 md:text-4xl"
             dangerouslySetInnerHTML={{
               __html: title,
             }}
@@ -43,6 +43,7 @@ const PostCard = ({ post, options = {} }) => {
       <Metadata {...metadata} />
       {excerpt && (
         <div
+          className="pb-4 mb-2 border-b border-paper-200"
           dangerouslySetInnerHTML={{
             __html: sanitizeExcerpt(excerpt),
           }}

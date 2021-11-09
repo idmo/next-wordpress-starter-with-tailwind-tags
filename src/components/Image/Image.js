@@ -1,10 +1,15 @@
-import ClassName from 'models/classname';
-
-const Image = ({ children, width = '100%', height = 'auto', src, alt, srcSet, sizes, dangerouslySetInnerHTML }) => {
+const Image = ({ children, width = '100%', src, alt, srcSet, sizes, dangerouslySetInnerHTML }) => {
   return (
     <figure>
       <div>
-        <img width={width} height={height} src={src} alt={alt || ''} srcSet={srcSet} sizes={sizes} />
+        <img
+          className="object-cover obect-center h-[230px]"
+          width={width}
+          src={src}
+          alt={alt || ''}
+          srcSet={srcSet}
+          sizes={sizes}
+        />
       </div>
       {children && <figcaption>{children}</figcaption>}
       {dangerouslySetInnerHTML && (

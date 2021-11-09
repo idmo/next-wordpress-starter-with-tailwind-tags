@@ -20,7 +20,7 @@ const Footer = () => {
       {hasMenu && (
         <Section>
           <Container>
-            <ul>
+            <ul className="grid grid-cols-3 gap-10">
               {hasRecentPosts && (
                 <li>
                   <Link href="/posts/">
@@ -87,8 +87,8 @@ const Footer = () => {
 
       <Section>
         <Container>
-          <p>
-            &copy; {new Date().getFullYear()} {title}
+          <p className="text-xs text-center md:text-base">
+            &copy; 2005 -{new Date().getFullYear()} {title} All Rights Reserved.
           </p>
         </Container>
       </Section>

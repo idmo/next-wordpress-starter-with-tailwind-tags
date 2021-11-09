@@ -6,6 +6,8 @@ const prettier = require('prettier');
 
 const config = require('../package.json');
 
+const site = config.parentCategoryId;
+
 /**
  * createFile
  */
@@ -71,8 +73,8 @@ function createApolloClient(url) {
 
 async function getAllPosts(apolloClient, process, verbose = false) {
   const query = gql`
-    {
-      posts(first: 10000) {
+    query AllPosts($site: Int) {
+      posts(where: { categoryId: $site }, first: 10000) {
         edges {
           node {
             title
@@ -109,7 +111,7 @@ async function getAllPosts(apolloClient, process, verbose = false) {
   let posts = [];
 
   try {
-    const data = await apolloClient.query({ query });
+    const data = await apolloClient.query({ query, variables: { site } });
     const nodes = [...data.data.posts.edges.map(({ node = {} }) => node)];
 
     posts = nodes.map((post) => {
@@ -185,6 +187,9 @@ async function getSiteMetadata(apolloClient, process, verbose = false) {
  * getSitePages
  */
 
+// TODO find a way to filter pages to a specific site. some will come
+// from Wordpress others will come from the file system.
+
 async function getPages(apolloClient, process, verbose = false) {
   const query = gql`
     {
@@ -257,11 +262,11 @@ function generateFeed({ posts = [], metadata = {} }) {
   const { homepage = '' } = config;
 
   const feed = new RSS({
-    title: metadata.title || '',
-    description: metadata.description,
+    title: config.title || '',
+    description: config.description,
     site_url: homepage,
     feed_url: `${homepage}/feed.xml`,
-    copyright: `${new Date().getFullYear()} ${metadata.title}`,
+    copyright: `${new Date().getFullYear()} ${config.title}`,
     language: metadata.language,
     pubDate: new Date(),
   });
@@ -269,8 +274,8 @@ function generateFeed({ posts = [], metadata = {} }) {
   posts.map((post) => {
     feed.item({
       title: post.title,
-      guid: `${homepage}/posts/${post.slug}`,
-      url: `${homepage}/posts/${post.slug}`,
+      guid: `${homepage}/blog/${post.slug}`,
+      url: `${homepage}/blog/${post.slug}`,
       date: post.date,
       description: post.excerpt,
       author: post.author,

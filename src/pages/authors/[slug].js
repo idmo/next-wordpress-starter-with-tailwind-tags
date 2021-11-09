@@ -7,7 +7,7 @@ import TemplateArchive from 'templates/archive';
 import Title from 'components/Title';
 
 export default function Author({ user, posts }) {
-  const { title, name, avatar, description, slug } = user;
+  const { title, name, description, slug } = user;
 
   const { metadata } = usePageMetadata({
     metadata: {
@@ -21,12 +21,14 @@ export default function Author({ user, posts }) {
     excludeMetadata: ['author'],
   };
 
+  console.log(user);
+
   return (
     <>
       <AuthorJsonLd author={user} />
       <TemplateArchive
         title={name}
-        Title={<Title title={name} thumbnail={avatar} />}
+        Title={<Title title={name} />}
         posts={posts}
         postOptions={postOptions}
         slug={slug}

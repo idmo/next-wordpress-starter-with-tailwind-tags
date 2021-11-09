@@ -4,6 +4,8 @@ import { decodeHtmlEntities, removeExtraSpaces } from 'lib/util';
 
 import { QUERY_SITE_DATA, QUERY_SEO_DATA } from 'data/site';
 
+import config from '../../package.json';
+
 /**
  * getSiteMetadata
  */
@@ -24,8 +26,9 @@ export async function getSiteMetadata() {
   }
 
   const { generalSettings } = siteData?.data;
-  let { title, description, language } = generalSettings;
-
+  let { language } = generalSettings;
+  let { title } = config;
+  let { description } = config; //get it from the config file instead of WP.
   const settings = {
     title,
     siteTitle: title,

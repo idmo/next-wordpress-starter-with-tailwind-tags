@@ -8,7 +8,6 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
-import SectionTitle from 'components/SectionTitle';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination/Pagination';
 
@@ -42,19 +41,11 @@ export default function TemplateArchive({
       <Header>
         <Container>
           <h1>{Title || title}</h1>
-          {metadata.description && (
-            <p
-              dangerouslySetInnerHTML={{
-                __html: metadata.description,
-              }}
-            />
-          )}
         </Container>
       </Header>
 
       <Section>
         <Container>
-          <SectionTitle>Posts</SectionTitle>
           {Array.isArray(posts) && (
             <>
               <ul>

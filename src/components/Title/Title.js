@@ -1,10 +1,5 @@
-const Title = ({ title, thumbnail }) => {
-  return (
-    <div>
-      {thumbnail && <img src={thumbnail.url} alt="" aria-hidden="true" />}
-      <span>{title}</span>
-    </div>
-  );
+const Title = ({ title }) => {
+  return <div className="category text-paper-700">{title}</div>;
 };
 
 export default Title;

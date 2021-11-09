@@ -2,12 +2,16 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_CATEGORIES, QUERY_CATEGORY_BY_SLUG, QUERY_CATEGORY_SEO_BY_SLUG } from 'data/categories';
 
+import config from '../../package.json';
+const { parentCategoryId } = config;
+const site = parentCategoryId;
+
 /**
  * categoryPathBySlug
  */
 
 export function categoryPathBySlug(slug) {
-  return `/categories/${slug}`;
+  return `/blog/categories/${slug}`;
 }
 
 /**
@@ -19,6 +23,9 @@ export async function getAllCategories() {
 
   const data = await apolloClient.query({
     query: QUERY_ALL_CATEGORIES,
+    variables: {
+      site,
+    },
   });
 
   const categories = data?.data.categories.edges.map(({ node = {} }) => node);
@@ -44,6 +51,7 @@ export async function getCategoryBySlug(slug) {
       query: QUERY_CATEGORY_BY_SLUG,
       variables: {
         slug,
+        site,
       },
     });
   } catch (e) {

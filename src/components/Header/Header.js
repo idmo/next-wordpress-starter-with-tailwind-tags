@@ -1,11 +1,5 @@
-import Container from 'components/Container';
-
 const Header = ({ children }) => {
-  return (
-    <header>
-      <Container>{children}</Container>
-    </header>
-  );
+  return <header>{children}</header>;
 };
 
 export default Header;

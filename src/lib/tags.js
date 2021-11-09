@@ -2,12 +2,16 @@ import { getApolloClient } from 'lib/apollo-client';
 
 import { QUERY_ALL_TAGS, QUERY_TAG_BY_SLUG, QUERY_TAG_SEO_BY_SLUG } from 'data/tags';
 
+// use the parent category tag
+import config from '../../package.json';
+const { parentCategoryId } = config;
+const site = parentCategoryId;
 /**
  * tagPathBySlug
  */
 
 export function tagPathBySlug(slug) {
-  return `/tags/${slug}`;
+  return `/blog/tags/${slug}`;
 }
 
 /**
@@ -44,6 +48,7 @@ export async function getTagBySlug(slug) {
       query: QUERY_TAG_BY_SLUG,
       variables: {
         slug,
+        site,
       },
     });
   } catch (e) {
@@ -62,6 +67,7 @@ export async function getTagBySlug(slug) {
         query: QUERY_TAG_SEO_BY_SLUG,
         variables: {
           slug,
+          site,
         },
       });
     } catch (e) {
