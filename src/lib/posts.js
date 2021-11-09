@@ -15,7 +15,9 @@ import {
 } from 'data/posts';
 
 // use the parent category tag
-const site = 35;
+import config from '../../package.json';
+const { parentCategoryId } = config;
+const site = parentCategoryId;
 
 /**
  * postPathBySlug

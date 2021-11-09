@@ -3,8 +3,8 @@ import { gql } from '@apollo/client';
 // TODO add site filterting to Category query. At least when other sites are using this too.
 
 export const QUERY_ALL_CATEGORIES = gql`
-  {
-    categories(where: { parent: 35 }, first: 10000) {
+  query AllCategories($site: Int) {
+    categories(where: { parent: $site, hideEmpty: true }, first: 10000) {
       edges {
         node {
           databaseId
