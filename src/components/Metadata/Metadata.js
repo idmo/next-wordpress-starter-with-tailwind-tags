@@ -1,20 +1,20 @@
 import Link from 'next/link';
 
 import { categoryPathBySlug } from 'lib/categories';
-import { tagPathBySlug } from 'lib/tags';
 import { authorPathByName } from 'lib/users';
 import { formatDate } from 'lib/datetime';
+import { Fragment } from 'react';
 
 const DEFAULT_METADATA_OPTIONS = {
   compactCategories: true,
   compactTags: true,
 };
 
-const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_OPTIONS }) => {
+const Metadata = ({ author, date, categories, options = DEFAULT_METADATA_OPTIONS }) => {
   const { compactCategories } = options;
 
   return (
-    <>
+    <Fragment>
       <div className="text-sm md:text-base">
         {date && (
           <time pubdate="pubdate" dateTime={date}>
@@ -23,7 +23,6 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
         )}
         <span className="text-primary-600">{' / '}</span>
 
-        {/* FIXME this isn't a good solution. There is always an author. */}
         {author && (
           <Link href={authorPathByName(author.name)}>
             <a className="font-medium" rel="author">
@@ -58,22 +57,8 @@ const Metadata = ({ author, date, categories, tags, options = DEFAULT_METADATA_O
             )}
           </div>
         )}
-        {Array.isArray(tags) && tags[0] && (
-          <div className="flex flex-row">
-            {tags.map((tag) => {
-              return (
-                <div key={tag.slug}>
-                  <span className="inline-flex w-2 h-2 mx-1 text-sm rounded-xl bg-cyan-500"></span>
-                  <Link href={tagPathBySlug(tag.slug)}>
-                    <a>{tag.name}</a>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        )}
       </div>
-    </>
+    </Fragment>
   );
 };
 
