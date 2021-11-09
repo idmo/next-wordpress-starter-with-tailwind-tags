@@ -9,6 +9,20 @@ Scaling WordPress with the power of [Next.js](https://nextjs.org/) and the stati
 
 ## ⚡️ Quick Start
 
+Since this is designed to use one instance of WordPress to serve many sites, there are a few WP-centric tweaks you have to make for it to work.
+
+On your WordPress Instance:
+
+- Create parent categories, one of each site you want to publish.
+- Make note of the category ID of each parent category
+
+In your `package.json` file:
+
+- Update the parentCategoryId property with the Category ID (e.g. 43) of the parent category that corresponds with your site.
+- Update the following properties homepage, title, description, with your own information.
+
+**Important Note** The package.json properties will override the equivalent properties of your single WordPress instance.
+
 ### Requirements
 
 * [WordPress](https://wordpress.org/)
@@ -34,16 +48,18 @@ WORDPRESS_GRAPHQL_ENDPOINT="http://wordpressite.com/graphql"
 The goal of this project is to take WordPress as a headless CMS and use Next.js to create a static experience without any 3rd party services that can be deployed anywhere.
 
 The hope is to build out as many features as we can to support what's typically expected from an out of the box theme on WordPress. Currently, those features include:
-* Blog (https://next-wordpress-starter.spacejelly.dev)
-* Pages (https://next-wordpress-starter.spacejelly.dev/about/)
-* Posts (https://next-wordpress-starter.spacejelly.dev/posts/how-to-create-a-headless-wordpress-blog-with-next-js-wordpress-starter/)
-* Categories (https://next-wordpress-starter.spacejelly.dev/categories/tutorial/)
-* Authors (https://next-wordpress-starter.spacejelly.dev/authors/colby-fayock/)
-* Search (Client side global navigation and https://next-wordpress-starter.spacejelly.dev/search/?q=wordpress)
-* RSS (https://next-wordpress-starter.spacejelly.dev/feed.xml)
-* Sitemap (https://next-wordpress-starter.spacejelly.dev/sitemap.xml)
+
+* Blog (<https://next-wordpress-starter.spacejelly.dev>)
+* Pages (<https://next-wordpress-starter.spacejelly.dev/about/>)
+* Posts (<https://next-wordpress-starter.spacejelly.dev/posts/how-to-create-a-headless-wordpress-blog-with-next-js-wordpress-starter/>)
+* Categories (<https://next-wordpress-starter.spacejelly.dev/categories/tutorial/>)
+* Authors (<https://next-wordpress-starter.spacejelly.dev/authors/colby-fayock/>)
+* Search (Client side global navigation and <https://next-wordpress-starter.spacejelly.dev/search/?q=wordpress>)
+* RSS (<https://next-wordpress-starter.spacejelly.dev/feed.xml>)
+* Sitemap (<https://next-wordpress-starter.spacejelly.dev/sitemap.xml>)
 
 Additionally, the theme is expected to be SEO friendly and performant out of the box, including:
+
 * Unique page titles
 * Unique descriptions
 * Open Graph tags
@@ -52,9 +68,10 @@ You can also optionally enable Yoast SEO plugin support to supercharge your SEO!
 
 Check out the [Issues](https://github.com/colbyfayock/next-wordpress-starter/issues) for what's on deck!
 
-*Want something a little more **basic**? Check out my other starter with an MVP setup to get up and running with WPGraphQL in WordPress: https://github.com/colbyfayock/next-wpgraphql-basic-starter*
+*Want something a little more **basic**? Check out my other starter with an MVP setup to get up and running with WPGraphQL in WordPress: <https://github.com/colbyfayock/next-wpgraphql-basic-starter>*
 
 ### Requirements
+
 * [WordPress](https://wordpress.org/)
 * [WPGraphQL](https://www.wpgraphql.com/)
 * Environment variables (see below)
@@ -114,6 +131,7 @@ With this file ESLint will automatically fix and validate syntax errors and form
 #### Netlify
 
 There are two options as to how you can deploy this project to Netlify:
+
 * [Essential Next.js Plugin](https://github.com/netlify/netlify-plugin-nextjs) (recommended)
 * [Exporting the project](https://nextjs.org/docs/advanced-features/static-html-export) via `next export`
 
@@ -131,7 +149,7 @@ In order to avoid an additional configuration file, we take advantage of some bu
 | -------------------------- | -------- | ------------------------------------------------------------------ |
 | homepage                   | Yes      | Homepage or hostname used to construct full URLs (ex Open Graph)   |
 
-- homepage: Setting the `homepage` property will update instances where the full URL is required such as Open Graph tags
+* homepage: Setting the `homepage` property will update instances where the full URL is required such as Open Graph tags
 
 ### WordPress
 
@@ -164,6 +182,7 @@ By enabling the Image Accelerator from Jetpack, your images will automatically b
 The Yoast SEO plugin is partially supported including most major features like metadata and open graph customization.
 
 #### Requirements
+
 * Yoast SEO plugin
 * Add WPGraphQL SEO plugin
 
