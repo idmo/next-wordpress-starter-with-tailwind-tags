@@ -1,12 +1,12 @@
 {
   "name": "next-wordpress-starter-with-tailwind-tags",
-  "homepage": "https://idmo.io",
-  "title": "iDMO",
-  "description": "Product Design & Development",
+  "homepage": "https://maggi.io",
+  "title": "Maggi.io",
+  "description": "Personal Website",
   "version": "0.2.0",
   "license": "MIT",
   "author": "Brian Maggi",
-  "parentCategoryId": 44,
+  "parentCategoryId": 49,
   "scripts": {
     "build": "next build",
     "wpe-build": "npm run build",
